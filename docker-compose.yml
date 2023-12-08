@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+    analytics:
+        extends:
+            file: analytics/app.yml
+            service: app
+        networks:
+            internal:
+                aliases:
+                    - analysis.docker.local
+        logging:
+            driver: syslog
+            options:
+                tag: docker-analysis
+        restart: unless-stopped       
+networks:
+    internal:
+        # name: shoestring-internal
