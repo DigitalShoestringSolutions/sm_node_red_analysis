@@ -10,12 +10,13 @@
         "id": "22b7ed29417a490c",
         "type": "junction",
         "z": "f6f2187d.f17ca8",
-        "x": 1100,
-        "y": 420,
+        "x": 1190,
+        "y": 480,
         "wires": [
             [
                 "e65bc8655b276676",
-                "7000e61d71b053ea"
+                "7000e61d71b053ea",
+                "01fb81e26867440b"
             ]
         ]
     },
@@ -80,7 +81,7 @@
         "type": "mqtt in",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "topic": "can_counter/#",
+        "topic": "equipment_monitoring/count_trigger/#",
         "qos": "1",
         "datatype": "json",
         "broker": "740d3d030d2744a2",
@@ -88,33 +89,15 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 70,
-        "y": 260,
+        "x": 150,
+        "y": 440,
         "wires": [
             [
-                "0363a6742b6fe2d5",
                 "1aef5ee929a149d5",
-                "687180fcb8d72926"
+                "687180fcb8d72926",
+                "0363a6742b6fe2d5"
             ]
         ]
-    },
-    {
-        "id": "64bf71fc8240db29",
-        "type": "mqtt out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "740d3d030d2744a2",
-        "x": 1030,
-        "y": 260,
-        "wires": []
     },
     {
         "id": "1aef5ee929a149d5",
@@ -129,45 +112,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 90,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "0363a6742b6fe2d5",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Set count",
-        "func": "var new_msg = {...msg}\nvar thresholds = flow.get(\"thresholds\")\n// node.warn(JSON.stringify(thresholds));\nvar count = 0\nthresholds.forEach(function(entry) {\n    if (new_msg.payload.duration > entry.threshold)\n        count = entry.value  \n});\n\nnew_msg.payload.count = count\nnew_msg.id = msg.id\n\n// node.warn(JSON.stringify(new_msg));\nreturn new_msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 260,
-        "wires": [
-            [
-                "5bca6394177f0ab5",
-                "8b023327024491b3"
-            ]
-        ]
-    },
-    {
-        "id": "5bca6394177f0ab5",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "Output",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
         "x": 290,
-        "y": 320,
+        "y": 260,
         "wires": []
     },
     {
@@ -187,8 +133,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 2,
-        "x": 520,
-        "y": 420,
+        "x": 610,
+        "y": 560,
         "wires": [
             [
                 "5bdc59a389fd95b7",
@@ -336,8 +282,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
-        "y": 420,
+        "x": 450,
+        "y": 560,
         "wires": [
             [
                 "67c81a08838e8841"
@@ -356,23 +302,13 @@
         "wires": []
     },
     {
-        "id": "6cee5b5626e066ff",
-        "type": "comment",
-        "z": "f6f2187d.f17ca8",
-        "name": "Determine number of cans from duration value",
-        "info": "",
-        "x": 410,
-        "y": 220,
-        "wires": []
-    },
-    {
         "id": "e4057a889761d30f",
         "type": "comment",
         "z": "f6f2187d.f17ca8",
         "name": "Send \"stopped\" message if nothing has been received for specified time period ",
         "info": "",
-        "x": 1090,
-        "y": 520,
+        "x": 1200,
+        "y": 620,
         "wires": []
     },
     {
@@ -389,8 +325,8 @@
         "correl": "",
         "expiry": "",
         "broker": "740d3d030d2744a2",
-        "x": 1210,
-        "y": 420,
+        "x": 1330,
+        "y": 480,
         "wires": []
     },
     {
@@ -419,8 +355,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 930,
-        "y": 440,
+        "x": 1030,
+        "y": 580,
         "wires": [
             [
                 "22b7ed29417a490c"
@@ -453,8 +389,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 930,
-        "y": 400,
+        "x": 1020,
+        "y": 460,
         "wires": [
             [
                 "22b7ed29417a490c"
@@ -474,8 +410,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 530,
-        "y": 360,
+        "x": 750,
+        "y": 260,
         "wires": []
     },
     {
@@ -491,8 +427,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 690,
-        "y": 500,
+        "x": 990,
+        "y": 260,
         "wires": []
     },
     {
@@ -508,8 +444,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1180,
-        "y": 380,
+        "x": 1300,
+        "y": 260,
         "wires": []
     },
     {
@@ -518,8 +454,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "Send \"running\" message",
         "info": "Sends when message is received and \ntrigger is not currently waiting \n(i.e. previous message was a \"stopped\")\n",
-        "x": 930,
-        "y": 340,
+        "x": 1020,
+        "y": 400,
         "wires": []
     },
     {
@@ -533,12 +469,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
-        "y": 780,
+        "x": 820,
+        "y": 900,
         "wires": [
             [
-                "4d23bf49bc5653b4",
-                "ba49f462a67066e3"
+                "4d23bf49bc5653b4"
             ]
         ]
     },
@@ -548,8 +483,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "UUID",
         "format": "Hex",
-        "x": 570,
-        "y": 780,
+        "x": 670,
+        "y": 900,
         "wires": [
             [
                 "808e5c0f5853d7dd"
@@ -569,8 +504,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 940,
-        "y": 800,
+        "x": 1040,
+        "y": 920,
         "wires": []
     },
     {
@@ -592,8 +527,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 420,
-        "y": 780,
+        "x": 520,
+        "y": 900,
         "wires": [
             [
                 "0e64f51a66ba3ce7"
@@ -611,12 +546,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
-        "y": 740,
+        "x": 820,
+        "y": 860,
         "wires": [
             [
-                "f8b9d961ae1b5c28",
-                "ba49f462a67066e3"
+                "f8b9d961ae1b5c28"
             ]
         ]
     },
@@ -633,8 +567,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 940,
-        "y": 720,
+        "x": 1040,
+        "y": 840,
         "wires": []
     },
     {
@@ -648,40 +582,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
-        "y": 440,
+        "x": 800,
+        "y": 580,
         "wires": [
             [
                 "61447a147b663473",
                 "4e234ddac12914ed",
                 "cddb5cfd0aa86b5f"
-            ]
-        ]
-    },
-    {
-        "id": "8b023327024491b3",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Set Topic",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "\"analysis/can_count/\"&payload.id",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 680,
-        "y": 260,
-        "wires": [
-            [
-                "64bf71fc8240db29"
             ]
         ]
     },
@@ -711,8 +618,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 710,
-        "y": 600,
+        "x": 810,
+        "y": 720,
         "wires": [
             [
                 "6d0939985d748871"
@@ -745,8 +652,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 710,
-        "y": 640,
+        "x": 810,
+        "y": 760,
         "wires": [
             [
                 "6d0939985d748871"
@@ -763,8 +670,8 @@
             "8a729756bd18fcb5",
             "0c4d20d4353ee171"
         ],
-        "x": 695,
-        "y": 380,
+        "x": 595,
+        "y": 720,
         "wires": []
     },
     {
@@ -775,8 +682,8 @@
         "links": [
             "34ac96f384204715"
         ],
-        "x": 595,
-        "y": 740,
+        "x": 695,
+        "y": 860,
         "wires": [
             [
                 "7dd13e0f94333bd1"
@@ -791,8 +698,8 @@
         "links": [
             "34ac96f384204715"
         ],
-        "x": 585,
-        "y": 600,
+        "x": 685,
+        "y": 720,
         "wires": [
             [
                 "0674c8c2fc937de6"
@@ -808,11 +715,12 @@
             "6d0939985d748871",
             "ba49f462a67066e3"
         ],
-        "x": 1105,
-        "y": 460,
+        "x": 1195,
+        "y": 520,
         "wires": [
             [
-                "e65bc8655b276676"
+                "e65bc8655b276676",
+                "01fb81e26867440b"
             ]
         ]
     },
@@ -825,8 +733,8 @@
         "links": [
             "f371c59a45ac6762"
         ],
-        "x": 865,
-        "y": 620,
+        "x": 965,
+        "y": 740,
         "wires": []
     },
     {
@@ -839,8 +747,8 @@
             "1789fd4e92471438",
             "b895aa9ce2aea53a"
         ],
-        "x": 845,
-        "y": 480,
+        "x": 965,
+        "y": 660,
         "wires": []
     },
     {
@@ -851,8 +759,8 @@
         "links": [
             "cddb5cfd0aa86b5f"
         ],
-        "x": 585,
-        "y": 640,
+        "x": 685,
+        "y": 760,
         "wires": [
             [
                 "3222c70f163ce991"
@@ -865,8 +773,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "Send status messages",
         "info": "",
-        "x": 700,
-        "y": 560,
+        "x": 800,
+        "y": 680,
         "wires": []
     },
     {
@@ -878,8 +786,8 @@
         "links": [
             "f371c59a45ac6762"
         ],
-        "x": 865,
-        "y": 760,
+        "x": 965,
+        "y": 880,
         "wires": []
     },
     {
@@ -890,8 +798,8 @@
         "links": [
             "cddb5cfd0aa86b5f"
         ],
-        "x": 285,
-        "y": 780,
+        "x": 385,
+        "y": 900,
         "wires": [
             [
                 "960b9102f2843df4"
@@ -904,8 +812,115 @@
         "z": "f6f2187d.f17ca8",
         "name": "Send ui event messages",
         "info": "",
-        "x": 710,
-        "y": 700,
+        "x": 810,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "5bca6394177f0ab5",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "64bf71fc8240db29",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "740d3d030d2744a2",
+        "x": 790,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8b023327024491b3",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Set Topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "\"analysis/can_count/\"&payload.id",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6cee5b5626e066ff",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Determine number of products from duration value",
+        "info": "",
+        "x": 550,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "0363a6742b6fe2d5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Set count",
+        "func": "var new_msg = {...msg}\nvar thresholds = flow.get(\"thresholds\")\n// node.warn(JSON.stringify(thresholds));\nvar count = 0\nthresholds.forEach(function(entry) {\n    if (new_msg.payload.duration > entry.threshold)\n        count = entry.value  \n});\n\nnew_msg.payload.count = count\nnew_msg.id = msg.id\n\n// node.warn(JSON.stringify(new_msg));\nreturn new_msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "5bca6394177f0ab5",
+                "8b023327024491b3"
+            ]
+        ]
+    },
+    {
+        "id": "01fb81e26867440b",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "MQTT OUT",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 680,
         "wires": []
     }
 ]

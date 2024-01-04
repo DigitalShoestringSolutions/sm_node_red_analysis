@@ -42,14 +42,18 @@
             }
         },
         "debug": {
-            "filter": "filterSelected",
+            "filter": "filterAll",
             "filteredNodes": [
                 "81cc8562123c0ef5",
                 "c61e5a54a5a53490",
-                "7000e61d71b053ea",
                 "61447a147b663473",
+                "f32dc59f42f8f617",
+                "96d9866a94fbe608",
+                "5bca6394177f0ab5",
+                "7000e61d71b053ea",
                 "f8b9d961ae1b5c28",
-                "4d23bf49bc5653b4"
+                "4d23bf49bc5653b4",
+                "01fb81e26867440b"
             ]
         }
     }
