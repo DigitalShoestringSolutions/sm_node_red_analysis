@@ -2,9 +2,9 @@ version: '2'
 
 services:
     app:
-        image: nodered/node-red:3.0.2
+        build: .
         volumes:
-          - ./data:/data:rw
+          - ./node_red_code:/data:rw
           - ./config:/config:ro
         ports:
           - "1880:1880"
