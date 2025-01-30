@@ -5,6 +5,8 @@ FROM nodered/node-red:4.0.8
 # WORKDIR /usr/src/node-red
 COPY ./code/package.json .
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
+COPY ./code/settings.js /data/settings.js
+COPY ./code/.config.projects.json /data/.config.projects.json
 # Copy _your_ Node-RED project files into place
 # NOTE: This will only work if you DO NOT later mount /data as an external volume.
 #       If you need to use an external volume for persistence then
