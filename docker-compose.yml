@@ -1,16 +1,9 @@
 services:
 
     analytics:
-
-        image: nodered/node-red:3.0.2
-
-        volumes:
-          - ./data:/data:rw
-          - ./config:/config:ro
-
-        ports:
-          - "1880:1880"
-    
+        extends:
+            file: ./app.yml
+            service: app
         networks:
             internal:
                 aliases:
@@ -20,5 +13,7 @@ services:
             driver: syslog
             options:
                 tag: docker-analysis
-                
-        restart: unless-stopped
+        restart: unless-stopped       
+networks:
+    internal:
+        name: shoestring-internal
